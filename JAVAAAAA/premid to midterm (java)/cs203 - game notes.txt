@@ -1,0 +1,8 @@
+- fill tree with nodes
+- edge 1: start of connection (line)
+- edge 2: end of connection (line)
+- source: start of path to traverse
+- destination: end of path in traversal
+- table: shows '1' per connection, otherwise 0
+- traversal: show traversal path (separated by commas)
+- all nodes covered in path will change colors (e.g.  3 to 6)
