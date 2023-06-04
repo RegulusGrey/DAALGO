@@ -1,0 +1,106 @@
+public abstract class Expression {
+    public abstract int evaluate();
+    public abstract String infix();
+    public abstract String prefix();
+    public abstract String postfix();
+}
+
+public class Number extends Expression {
+    private int value;
+
+    public Number(int value) {
+        this.value = value;
+    }
+
+    public int evaluate() {
+        return value;
+    }
+
+    public String infix() {
+        return Integer.toString(value);
+    }
+
+    public String prefix() {
+        return Integer.toString(value);
+    }
+
+    public String postfix() {
+        return Integer.toString(value);
+    }
+}
+
+public abstract class Operation extends Expression {
+    protected Expression left;
+    protected Expression right;
+
+    public Operation(Expression left, Expression right) {
+        this.left = left;
+        this.right = right;
+    }
+
+    public abstract int operate(int leftValue, int rightValue);
+    
+    public int evaluate() {
+        int leftValue = left.evaluate();
+        int rightValue = right.evaluate();
+        return operate(leftValue, rightValue);
+    }
+
+    public String infix(String operator) {
+        return "(" + left.infix() + " " + operator + " " + right.infix() + ")";
+    }
+
+    public String prefix(String operator) {
+        return "(" + operator + " " + left.prefix() + " " + right.prefix() + ")";
+    }
+
+    public String postfix(String operator) {
+        return "(" + left.postfix() + " " + right.postfix() + " " + operator + ")";
+    }
+}
+
+public class Addition extends Operation {
+    public Addition(Expression left, Expression right) {
+        super(left, right);
+    }
+
+    public int operate(int leftValue, int rightValue) {
+        return leftValue + rightValue;
+    }
+
+    public String infix() {
+        return infix("+");
+    }
+
+    public String prefix() {
+        return prefix("+");
+    }
+
+    public String postfix() {
+        return postfix("+");
+    }
+}
+
+public class Subtraction extends Operation {
+    public Subtraction(Expression left, Expression right) {
+        super(left, right);
+    }
+
+    public int operate(int leftValue, int rightValue) {
+        return leftValue - rightValue;
+    }
+
+    public String infix() {
+        return infix("-");
+    }
+
+    public String prefix() {
+        return prefix("-");
+    }
+
+    public String postfix() {
+        return postfix("-");
+    }
+}
+
+// Other classes for multiplication, division, etc. can be implemented similarly

@@ -1,0 +1,66 @@
+class Expression:
+    def evaluate(self):
+        pass
+
+class InfixExpression(Expression):
+    def __init__(self, left, op, right):
+        self.left = left
+        self.op = op
+        self.right = right
+
+    def evaluate(self):
+        if self.op == '+':
+            return self.left.evaluate() + self.right.evaluate()
+        elif self.op == '-':
+            return self.left.evaluate() - self.right.evaluate()
+        elif self.op == '*':
+            return self.left.evaluate() * self.right.evaluate()
+        elif self.op == '/':
+            return self.left.evaluate() / self.right.evaluate()
+        else:
+            raise ValueError("Invalid operator")
+
+    def __str__(self):
+        return f"({str(self.left)} {self.op} {str(self.right)})"
+
+class PrefixExpression(Expression):
+    def __init__(self, op, left, right):
+        self.op = op
+        self.left = left
+        self.right = right
+
+    def evaluate(self):
+        if self.op == '+':
+            return self.left.evaluate() + self.right.evaluate()
+        elif self.op == '-':
+            return self.left.evaluate() - self.right.evaluate()
+        elif self.op == '*':
+            return self.left.evaluate() * self.right.evaluate()
+        elif self.op == '/':
+            return self.left.evaluate() / self.right.evaluate()
+        else:
+            raise ValueError("Invalid operator")
+
+    def __str__(self):
+        return f"{self.op} {str(self.left)} {str(self.right)}"
+
+class PostfixExpression(Expression):
+    def __init__(self, left, right, op):
+        self.left = left
+        self.right = right
+        self.op = op
+
+    def evaluate(self):
+        if self.op == '+':
+            return self.left.evaluate() + self.right.evaluate()
+        elif self.op == '-':
+            return self.left.evaluate() - self.right.evaluate()
+        elif self.op == '*':
+            return self.left.evaluate() * self.right.evaluate()
+        elif self.op == '/':
+            return self.left.evaluate() / self.right.evaluate()
+        else:
+            raise ValueError("Invalid operator")
+
+    def __str__(self):
+        return f"{str(self.left)} {str(self.right)} {self.op}"
